@@ -133,8 +133,8 @@
       "buildsystem": "meson",
       "sources": [{
         "type": "archive",
-        "url": "https://github.com/bilelmoussaoui/Authenticator/archive/0.2.2.tar.gz",
-        "sha256": "c1889f4ed445ea4cfb11dc31fe24383d9806381101e4256a6c754579ec6b77a9"
+        "url": "https://github.com/bilelmoussaoui/Authenticator/archive/0.2.2.1.tar.gz",
+        "sha256": "b50fa2439a0986262d3497a3825d8e73e15b6350aff481b5547712068173825f"
       }]
     }
   ]
