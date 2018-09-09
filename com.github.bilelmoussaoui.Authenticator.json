@@ -132,9 +132,9 @@
       "name": "Authenticator",
       "buildsystem": "meson",
       "sources": [{
-        "type": "archive",
-        "url": "https://github.com/bilelmoussaoui/Authenticator/archive/0.2.2.1.tar.gz",
-        "sha256": "b50fa2439a0986262d3497a3825d8e73e15b6350aff481b5547712068173825f"
+        "type": "git",
+        "url": "https://github.com/bilelmoussaoui/Authenticator.git",
+        "commit": "0e77a8683eddcd4853bbadbbeb3a8471c9f80df2"
       }]
     }
   ]
