@@ -134,7 +134,7 @@
       "sources": [{
         "type": "git",
         "url": "https://github.com/bilelmoussaoui/Authenticator.git",
-        "commit": "0e77a8683eddcd4853bbadbbeb3a8471c9f80df2"
+        "commit": "bcc5353725d9b8be90c9472f706e2a624a4ebf96"
       }]
     }
   ]
