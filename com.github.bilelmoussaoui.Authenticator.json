@@ -143,7 +143,7 @@
             "buildsystem": "meson",
             "sources": [{
                 "type": "git",
-                "url": "https://gitlab.gnome.org/World/Authenticator",
+                "url": "git@gitlab.gnome.org:World/Authenticator.git",
                 "commit": "522c26ebea0807c1ee421086ae6a489db13e3c29"
             }]
         }
