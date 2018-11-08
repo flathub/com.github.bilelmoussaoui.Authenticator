@@ -1,7 +1,7 @@
 {
     "app-id": "com.github.bilelmoussaoui.Authenticator",
     "runtime": "org.gnome.Platform",
-    "runtime-version": "3.28",
+    "runtime-version": "3.30",
     "sdk": "org.gnome.Sdk",
     "command": "authenticator",
     "finish-args": [
@@ -17,15 +17,11 @@
         "--talk-name=org.gnome.Shell.Screenshot",
         /* dconf */
         "--filesystem=xdg-run/dconf", "--filesystem=~/.config/dconf:ro",
-        "--talk-name=ca.desrt.dconf", "--env=DCONF_USER_CONFIG_DIR=.config/dconf"
+        "--talk-name=ca.desrt.dconf", "--env=DCONF_USER_CONFIG_DIR=.config/dconf",
+        
+        /* Pyzbar library path */
+        "--env=ZBAR_PATH=/app/lib/libzbar.so"
     ],
-    "build-options": {
-        "cflags": "-O2 -g",
-        "cxxflags": "-O2 -g",
-        "env": {
-            "V": "1"
-        }
-    },
     "modules": [{
             "name": "zbar",
             "config-opts": [
@@ -124,6 +120,10 @@
                 "type": "archive",
                 "url": "https://github.com/NaturalHistoryMuseum/pyzbar/archive/v0.1.7.tar.gz",
                 "sha256": "4dbbece533650f2aeb6c8d1f41cf424614d2877d7331c48a9eed35ae9f949626"
+            },
+            {
+                "type": "patch",
+                "path": "pyzbar.patch"
             }]
         },
         {

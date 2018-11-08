@@ -1,0 +1,19 @@
+--- a/pyzbar/zbar_library.py	2018-05-13 14:26:44.000000000 +0200
++++ b/pyzbar/zbar_library.py	2018-11-08 11:08:00.245082497 +0100
+@@ -2,6 +2,7 @@
+ """
+ import platform
+ import sys
++import os
+ 
+ from ctypes import cdll
+ from ctypes.util import find_library
+@@ -60,7 +61,7 @@
+             dependencies, libzbar = load_objects(Path(__file__).parent)
+     else:
+         # Assume a shared library on the path
+-        path = find_library('zbar')
++        path = os.getenv('ZBAR_PATH') or find_library('zbar')
+         if not path:
+             raise ImportError('Unable to find zbar shared library')
+         libzbar = cdll.LoadLibrary(path)
