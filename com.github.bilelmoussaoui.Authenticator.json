@@ -5,7 +5,6 @@
     "runtime-version": "3.30",
     "sdk": "org.gnome.Sdk",
     "command": "authenticator",
-    "finish-args": [
     "desktop-file-name-prefix": "(Beta) ",
     "finish-args": [
         /* X11 + XShm */
@@ -24,8 +23,6 @@
         "--talk-name=ca.desrt.dconf", "--env=DCONF_USER_CONFIG_DIR=.config/dconf",
         /* Pyzbar library path */
         "--env=ZBAR_PATH=/app/lib/libzbar.so"
-    ],
-
     ],
     "modules": [{
             "name": "zbar",
