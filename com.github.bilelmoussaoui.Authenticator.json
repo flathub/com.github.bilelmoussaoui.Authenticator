@@ -1,26 +1,31 @@
 {
     "app-id": "com.github.bilelmoussaoui.Authenticator",
+    "default-branch": "beta",
     "runtime": "org.gnome.Platform",
     "runtime-version": "3.30",
     "sdk": "org.gnome.Sdk",
     "command": "authenticator",
     "finish-args": [
+    "desktop-file-name-prefix": "(Beta) ",
+    "finish-args": [
         /* X11 + XShm */
         "--share=ipc", "--socket=x11",
         /* Wayland */
         "--socket=wayland",
-        /* Filesystem */
-        "--filesystem=home",
+        /* Network */
+        "--share=network",
         /* Keyring */
         "--talk-name=org.freedesktop.secrets",
+        "--talk-name=org.freedesktop.Flatpak",
         /* Screenshot (used to scan QR code)*/
         "--talk-name=org.gnome.Shell.Screenshot",
         /* dconf */
         "--filesystem=xdg-run/dconf", "--filesystem=~/.config/dconf:ro",
         "--talk-name=ca.desrt.dconf", "--env=DCONF_USER_CONFIG_DIR=.config/dconf",
-        
         /* Pyzbar library path */
         "--env=ZBAR_PATH=/app/lib/libzbar.so"
+    ],
+
     ],
     "modules": [{
             "name": "zbar",
@@ -144,7 +149,7 @@
             "sources": [{
                 "type": "git",
                 "url": "https://gitlab.gnome.org/World/Authenticator.git",
-                "commit": "522c26ebea0807c1ee421086ae6a489db13e3c29"
+                "commit": "8d22fef1eee4e485ef2271a7c2f5859f25d555c7"
             }]
         }
     ]
