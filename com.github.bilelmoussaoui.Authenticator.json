@@ -139,6 +139,22 @@
                 "url": "https://files.pythonhosted.org/packages/4a/87/76ead690afc4c7710012ede242537cd9807dde9de6299e65d075925c0b02/python_gnupg-0.4.3-py2.py3-none-any.whl",
                 "sha256": "faa69bab58ed0936f0ccf96c99b92369b7a1819305d37dfe5c927d21a437a09d"
             }]
+        },           
+        {
+            "name": "libhandy",
+            "buildsystem": "meson",
+            "config-opts": [
+                "-Dtests=false",
+                "-Dexamples=false",
+                "-Dglade_catalog=disabled",
+                "-Dvapi=false"
+            ],
+            "sources": [{
+                "type": "git",
+                "url": "https://source.puri.sm/Librem5/libhandy.git",
+                "tag": "v0.0.9",
+                "commit": "56b0aa62f6251ee19a88fc208b7ca8dcf9c9633c"
+            }]
         },
         {
             "name": "Authenticator",
