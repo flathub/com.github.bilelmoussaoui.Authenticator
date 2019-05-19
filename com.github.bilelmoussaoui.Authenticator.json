@@ -222,7 +222,7 @@
             "sources": [{
                 "type": "git",
                 "url": "https://gitlab.gnome.org/World/Authenticator.git",
-                "tag": " 3.31",
+                "tag": "3.31",
                 "commit": "83f92b7dacc0afa726d8649dbb10f3584bd1bf72"
             }]
         }
