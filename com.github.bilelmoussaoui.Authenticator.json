@@ -1,7 +1,7 @@
 {
     "app-id": "com.github.bilelmoussaoui.Authenticator",
     "runtime": "org.gnome.Platform",
-    "runtime-version": "3.30",
+    "runtime-version": "3.32",
     "sdk": "org.gnome.Sdk",
     "command": "authenticator",
     "finish-args": [
@@ -9,18 +9,22 @@
         "--share=ipc", "--socket=x11",
         /* Wayland */
         "--socket=wayland",
-        /* Filesystem */
-        "--filesystem=home",
+        /* Network */
+        "--share=network",
         /* Keyring */
         "--talk-name=org.freedesktop.secrets",
+        "--talk-name=org.freedesktop.Flatpak",
         /* Screenshot (used to scan QR code)*/
         "--talk-name=org.gnome.Shell.Screenshot",
+        /* Follow Night Light Settings */
+        "--talk-name=org.gnome.SettingsDaemon.Color",
         /* dconf */
         "--filesystem=xdg-run/dconf", "--filesystem=~/.config/dconf:ro",
         "--talk-name=ca.desrt.dconf", "--env=DCONF_USER_CONFIG_DIR=.config/dconf",
-        
         /* Pyzbar library path */
-        "--env=ZBAR_PATH=/app/lib/libzbar.so"
+        "--env=ZBAR_PATH=/app/lib/libzbar.so",
+        /* GNOME Search Provider */
+        "--own-name=com.github.bilelmoussaoui.Authenticator.SearchProvider"
     ],
     "modules": [{
             "name": "zbar",
@@ -105,6 +109,76 @@
             ]
         },
         {
+            "name": "beautifulsoup4",
+            "buildsystem": "simple",
+            "build-commands": [
+                "python3 setup.py install --prefix=/app"
+            ],
+            "ensure-writable": [
+                "/lib/python*/site-packages/easy-install.pth",
+                "/lib/python*/site-packages/setuptools.pth",
+                "/app/lib/python*/site-packages/easy-install.pth",
+                "/app/lib/python*/site-packages/setuptools.pth"
+            ],
+            "sources": [{
+                "type": "archive",
+                "url": "https://www.crummy.com/software/BeautifulSoup/bs4/download/4.7/beautifulsoup4-4.7.0.tar.gz",
+                "sha256": "e394827904cc4923f443e8dd2e9968343669c8e1ad7a8d62d7541e780884acb8"
+            }],
+            "modules": [{
+                "name": "soupsieve",
+                "buildsystem": "simple",
+                "build-commands": [
+                    "python3 setup.py install --prefix=/app"
+                ],
+                "ensure-writable": [
+                    "/lib/python*/site-packages/easy-install.pth",
+                    "/lib/python*/site-packages/setuptools.pth",
+                    "/app/lib/python*/site-packages/easy-install.pth",
+                    "/app/lib/python*/site-packages/setuptools.pth"
+                ],
+                "sources": [{
+                    "type": "archive",
+                    "url": "https://files.pythonhosted.org/packages/ad/30/4bed751373bef51a7a1897a31bfbd2df8a7e3a7e81e080aef118fe4fc486/soupsieve-1.6.1.tar.gz",
+                    "sha256": "f7d99b41637be2f249dfcc06ae93c13fcbbdfa7bb68b15308cdd0734e58146f1"
+                }]
+            }]
+        },
+        {
+            "name": "python3-requests",
+            "buildsystem": "simple",
+            "build-commands": [
+                "pip3 install --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} requests"
+            ],
+            "sources": [
+                {
+                    "type": "file",
+                    "url": "https://files.pythonhosted.org/packages/ad/13/eb56951b6f7950cadb579ca166e448ba77f9d24efc03edd7e55fa57d04b7/idna-2.8.tar.gz",
+                    "sha256": "c357b3f628cf53ae2c4c05627ecc484553142ca23264e593d327bcde5e9c3407"
+                },
+                {
+                    "type": "file",
+                    "url": "https://files.pythonhosted.org/packages/52/2c/514e4ac25da2b08ca5a464c50463682126385c4272c18193876e91f4bc38/requests-2.21.0.tar.gz",
+                    "sha256": "502a824f31acdacb3a35b6690b5fbf0bc41d63a24a45c4004352b0242707598e"
+                },
+                {
+                    "type": "file",
+                    "url": "https://files.pythonhosted.org/packages/55/54/3ce77783acba5979ce16674fc98b1920d00b01d337cfaaf5db22543505ed/certifi-2018.11.29.tar.gz",
+                    "sha256": "47f9c83ef4c0c621eaef743f133f09fa8a74a9b75f037e8624f83bd1b6626cb7"
+                },
+                {
+                    "type": "file",
+                    "url": "https://files.pythonhosted.org/packages/b1/53/37d82ab391393565f2f831b8eedbffd57db5a718216f82f1a8b4d381a1c1/urllib3-1.24.1.tar.gz",
+                    "sha256": "de9529817c93f27c8ccbfead6985011db27bd0ddfcdb2d86f3f663385c6a9c22"
+                },
+                {
+                    "type": "file",
+                    "url": "https://files.pythonhosted.org/packages/fc/bb/a5768c230f9ddb03acc9ef3f0d4a3cf93462473795d18e9535498c8f929d/chardet-3.0.4.tar.gz",
+                    "sha256": "84ab92ed1c4d4f16916e05906b6b75a6c0fb5db821cc65e70cbd64a3e2a5eaae"
+                }
+            ]
+        },
+        {
             "name": "pyzbar",
             "buildsystem": "simple",
             "build-commands": [
@@ -127,15 +201,19 @@
             }]
         },
         {
-            "name": "python-gnupg",
-            "buildsystem": "simple",
-            "build-commands": [
-                "pip3 install --prefix=/app python_gnupg-0.4.3-py2.py3-none-any.whl"
+            "name": "libhandy",
+            "buildsystem": "meson",
+            "config-opts": [
+                "-Dtests=false",
+                "-Dexamples=false",
+                "-Dglade_catalog=disabled",
+                "-Dvapi=false"
             ],
             "sources": [{
-                "type": "file",
-                "url": "https://files.pythonhosted.org/packages/4a/87/76ead690afc4c7710012ede242537cd9807dde9de6299e65d075925c0b02/python_gnupg-0.4.3-py2.py3-none-any.whl",
-                "sha256": "faa69bab58ed0936f0ccf96c99b92369b7a1819305d37dfe5c927d21a437a09d"
+                "type": "git",
+                "url": "https://source.puri.sm/Librem5/libhandy.git",
+                "tag": "v0.0.9",
+                "commit": "56b0aa62f6251ee19a88fc208b7ca8dcf9c9633c"
             }]
         },
         {
@@ -144,7 +222,8 @@
             "sources": [{
                 "type": "git",
                 "url": "https://gitlab.gnome.org/World/Authenticator.git",
-                "commit": "522c26ebea0807c1ee421086ae6a489db13e3c29"
+                "commit": "bb75233fa1d33fffb6671feabfb1a500f62b806d",
+                "tag": "3.32"
             }]
         }
     ]
