@@ -201,6 +201,44 @@
             }]
         },
         {
+            "name" : "yoyo-migrations",
+            "buildsystem" : "simple",
+            "build-commands" : [
+                "pip3 install --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} yoyo-migrations"
+            ],
+            "ensure-writable" : [
+                "/lib/python*/site-packages/easy-install.pth",
+                "/lib/python*/site-packages/setuptools.pth",
+                "/app/lib/python*/site-packages/easy-install.pth",
+                "/app/lib/python*/site-packages/setuptools.pth"
+            ],
+            "sources" : [
+                {
+                    "type" : "file",
+                    "url" : "https://files.pythonhosted.org/packages/5f/cf/f6d468c6929e8739cd12bf1a9cf3719e0be739e09acfaddc0f9ade67e67c/yoyo_migrations-6.1.0-py2.py3-none-any.whl",
+                    "sha256" : "95e5c49a797873d3b86e5a7714c1a714bea8728a6fc1d6f6f5019d3d058471e5"
+                },
+                {
+                    "type": "file",
+                    "url": "https://files.pythonhosted.org/packages/79/42/d717cc2b4520fb09e45b344b1b0b4e81aa672001dd128c180fabc655c341/text_unidecode-1.2-py2.py3-none-any.whl",
+                    "sha256": "801e38bd550b943563660a91de8d4b6fa5df60a542be9093f7abf819f86050cc"
+                }
+            ],
+            "modules": [{
+                "name": "iniherit",
+                    "buildsystem" : "simple",
+                    "build-commands" : [
+                        "python3 setup.py install --prefix=/app"
+                    ],
+                "sources": [
+                        {
+                    "type": "archive",
+                    "url": "https://files.pythonhosted.org/packages/65/a5/5bb95059c92c23560a80bcd599bc737a4175b275b3a577cb19f66bd302e3/iniherit-0.3.9.tar.gz",
+                    "sha256": "06d90849ff0c4fadb7e255ce31e7c8e188a99af90d761435c72b79b36adbb67a"
+                }]
+            }]
+        },
+        {
             "name": "libhandy",
             "buildsystem": "meson",
             "config-opts": [
@@ -222,8 +260,8 @@
             "sources": [{
                 "type": "git",
                 "url": "https://gitlab.gnome.org/World/Authenticator.git",
-                "commit": "bb75233fa1d33fffb6671feabfb1a500f62b806d",
-                "tag": "3.32"
+                "commit": "ebf286cff6f8dc9ee2d7f5be9f102536bf8a6036",
+                "tag": "3.32.1"
             }]
         }
     ]
