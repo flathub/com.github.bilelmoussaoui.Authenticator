@@ -264,8 +264,8 @@
             "sources": [{
                 "type": "git",
                 "url": "https://gitlab.gnome.org/World/Authenticator.git",
-                "commit": "e068d6af1163837d4d7d444f532d1e7e07a0f86f",
-                "tag": "3.32.1"
+                "commit": "d6c8d61d2568d92d3ad7d1ae5c7743f9919fb2b8",
+                "tag": "3.32.2"
             }]
         }
     ]
