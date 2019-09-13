@@ -18,7 +18,7 @@
         /* Follow Night Light Settings */
         "--talk-name=org.gnome.SettingsDaemon.Color",
         /* Migrate dconf settings */
-        "--metadata=X-DConf=migrate-path=/com/github/bilelmoussaoui/Authenticator/"
+        "--metadata=X-DConf=migrate-path=/com/github/bilelmoussaoui/Authenticator/",
         /* Pyzbar library path */
         "--env=ZBAR_PATH=/app/lib/libzbar.so",
         /* GNOME Search Provider */
