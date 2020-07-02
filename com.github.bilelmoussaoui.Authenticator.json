@@ -1,7 +1,7 @@
 {
     "app-id": "com.github.bilelmoussaoui.Authenticator",
     "runtime": "org.gnome.Platform",
-    "runtime-version": "3.36",
+    "runtime-version": "3.34",
     "sdk": "org.gnome.Sdk",
     "command": "authenticator",
     "finish-args": [
@@ -263,8 +263,7 @@
             "sources": [{
                 "type": "git",
                 "url": "https://gitlab.gnome.org/World/Authenticator.git",
-                "commit": "d6c8d61d2568d92d3ad7d1ae5c7743f9919fb2b8",
-                "tag": "3.32.2"
+                "commit": "d6c8d61d2568d92d3ad7d1ae5c7743f9919fb2b8"
             }]
         }
     ]
