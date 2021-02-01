@@ -264,6 +264,9 @@
                 "type": "git",
                 "url": "https://gitlab.gnome.org/World/Authenticator.git",
                 "commit": "d6c8d61d2568d92d3ad7d1ae5c7743f9919fb2b8"
+            }, {
+                "type": "patch",
+                "path": "build_fix.patch"
             }]
         }
     ]
